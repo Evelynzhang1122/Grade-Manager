@@ -85,7 +85,7 @@ int main()
         cin >> examPoints;
         cout << "Enter the amount of points your projects make up in the course: ";
         cin >> projectPoints;
-        // Non-weighted system: Simple percentage-based calculation
+        // Non-weighted system: Simple point-based calculation
 
     } else {
     cout << "This question must be answered properly. Please try again.\n";
