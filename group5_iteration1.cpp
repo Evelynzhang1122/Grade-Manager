@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-    string Name, Class;
+    string Name, Class, weighted;
     int StudentID, TotalPoints, GradeA, GradeB, GradeC, GradeD, GradeF;
 
 // Add code in which if name isn't letters, or id isn't an integer, ask user to reinput
@@ -35,6 +35,7 @@ int main()
 // If assignments hold different weight, add percentages of how much does assignments, tests, projects, etc. make up the grade (up to 100%)
 
     cout << "Are assignments weighted in this course? (yes/no): ";
+    cin >> weighted;
     
 
 // Later in the code: user output of whether they are doing good, or need to do better in the course
