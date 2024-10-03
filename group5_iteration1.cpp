@@ -58,3 +58,22 @@ int main()
 // Also add code later to see if there are any other courses to test
 
 }
+    if (weighted == "yes") {
+    int assignmentWeight, examWeight, projectWeight;
+    cout << "Enter the percentage weight of assignments: ";
+    cin >> assignmentWeight;
+    cout << "Enter the percentage weight of exams: ";
+    cin >> examWeight;
+    cout << "Enter the percentage weight of projects: ";
+    cin >> projectWeight;
+
+    // Add checks to make sure weights sum to 100%
+    if (assignmentWeight + examWeight + projectWeight != 100) {
+        cout << "The weights must add up to 100%. Please re-enter the weights.\n";
+        // Loop back to input the weights again if they don't sum to 100.
+    }
+
+  
+}     else {
+    // Non-weighted system: Simple percentage-based calculation
+}
