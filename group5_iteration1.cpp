@@ -61,10 +61,58 @@ int main()
         cin >> projectWeight;
 
         // Add checks to make sure weights sum to 100%
-      if (assignmentWeight + examWeight + projectWeight != 100) {
+      while (assignmentWeight + examWeight + projectWeight != 100) {
             cout << "The weights must add up to 100%. Please re-enter the weights.\n";
             // Loop back to input the weights again if they don't sum to 100.
+            cout << "Enter the percentage weight of assignments: ";
+            cin >> assignmentWeight;
+            cout << "Enter the percentage weight of exams: ";
+            cin >> examWeight;
+            cout << "Enter the percentage weight of projects: ";
+            cin >> projectWeight;
         } 
+        
+        // Allow the user to enter multiple scores until the user chooses to stop
+            char moreInput;
+            int totalAssignments = 0, totalExams = 0, totalProjects = 0;
+            int assignmentScore, examScore, projectScore;
+            
+            
+        // input loop of homework
+        do {
+            cout << "Enter your assignment score: ";
+            cin >> assignmentScore;
+            totalAssignments += assignmentScore;  // 累加分数
+
+            cout << "Do you have more assignment scores to enter? (y/n): ";
+            cin >> moreInput;
+        } while (moreInput == 'y');
+
+        // input loop of exam
+        do {
+            cout << "Enter your exam score: ";
+            cin >> examScore;
+            totalExams += examScore;
+
+            cout << "Do you have more exam scores to enter? (y/n): ";
+            cin >> moreInput;
+        } while (moreInput == 'y');
+
+        // input loop of project
+        do {
+            cout << "Enter your project score: ";
+            cin >> projectScore;
+            totalProjects += projectScore;
+
+            cout << "Do you have more project scores to enter? (y/n): ";
+            cin >> moreInput;
+        } while (moreInput == 'y');
+
+        // input total points
+        cout << "Total assignment points: " << totalAssignments << endl;
+        cout << "Total exam points: " << totalExams << endl;
+        cout << "Total project points: " << totalProjects << endl;
+
     } else if (weighted == "no") {
 
         cout << "How much points is the class made up of?: ";
