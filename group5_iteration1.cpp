@@ -52,20 +52,24 @@ int main()
         cout << "Minimum Percentage required to get a D?: ";
         cin >> GradeD;
 
-        int assignmentWeight, examWeight, projectWeight;
+        int assignmentWeight, quizWeight, examWeight, projectWeight;
         cout << "Enter the percentage weight of assignments: ";
         cin >> assignmentWeight;
+        cout << "Enter the percentage weight of quizzes: ";
+        cin >> quizWeight;
         cout << "Enter the percentage weight of exams: ";
         cin >> examWeight;
         cout << "Enter the percentage weight of projects: ";
         cin >> projectWeight;
 
         // Add checks to make sure weights sum to 100%
-      while (assignmentWeight + examWeight + projectWeight != 100) {
+      while (assignmentWeight + quizWeight + examWeight + projectWeight != 100) {
             cout << "The weights must add up to 100%. Please re-enter the weights.\n";
             // Loop back to input the weights again if they don't sum to 100.
             cout << "Enter the percentage weight of assignments: ";
             cin >> assignmentWeight;
+            cout << "Enter the percentage weight of quizzes: ";
+            cin >> quizWeight;
             cout << "Enter the percentage weight of exams: ";
             cin >> examWeight;
             cout << "Enter the percentage weight of projects: ";
@@ -74,8 +78,8 @@ int main()
         
         // Allow the user to enter multiple scores until the user chooses to stop
             char moreInput;
-            int totalAssignments = 0, totalExams = 0, totalProjects = 0;
-            int assignmentScore, examScore, projectScore;
+            int totalAssignments = 0, totalQuizzes = 0, totalExams = 0, totalProjects = 0;
+            int assignmentScore, quizScore, examScore, projectScore;
             
             
         // input loop of homework
@@ -83,6 +87,15 @@ int main()
             cout << "Enter your assignment score: ";
             cin >> assignmentScore;
             totalAssignments += assignmentScore;  // 累加分数
+
+            cout << "Do you have more assignment scores to enter? (y/n): ";
+            cin >> moreInput;
+        } while (moreInput == 'y');
+
+        do {
+            cout << "Enter your quiz score: ";
+            cin >> quizScore;
+            totalQuizzes += quizScore;
 
             cout << "Do you have more assignment scores to enter? (y/n): ";
             cin >> moreInput;
@@ -110,6 +123,7 @@ int main()
 
         // input total points
         cout << "Total assignment points: " << totalAssignments << endl;
+        cout << "Total quiz points: " << totalQuizzes << endl;
         cout << "Total exam points: " << totalExams << endl;
         cout << "Total project points: " << totalProjects << endl;
 
@@ -126,14 +140,18 @@ int main()
         cout << "Minimum Points required to get a D?: ";
         cin >> GradeD;
         
-        int assignmentPoints, examPoints, projectPoints;
+        int assignmentPoints, quizPoints, examPoints, projectPoints;
         cout << "Enter the amount of points your assignments make up in the course: ";
         cin >> assignmentPoints;
+        cout << "Enter the amount of points your quizzes make up in the course: ";
+        cin >> quizPoints;
         cout << "Enter the amount of points your exams make up in the course: ";
         cin >> examPoints;
         cout << "Enter the amount of points your projects make up in the course: ";
         cin >> projectPoints;
         // Non-weighted system: Simple point-based calculation
+        // Make sure to add code that prevents users from inputting a total score that exceeds the amount user previously mentioned 
+        // (ex: if assignments is worth 200 points, user inputs should not exceed 200)
 
     } else {
     cout << "This question must be answered properly. Please try again.\n";
