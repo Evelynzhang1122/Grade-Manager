@@ -2,14 +2,14 @@
  * @file group5_iteration1.cpp
  * @author Group 5 (Lu Zhang, Darren Ma, Sarah Hammash, Zhan Hao He)
  * @brief Grade Manager
- * @version 0.1
- * @date 10/2/24
+ * @version 0.2
+ * @date 10/30/24
  * 
  * @copyright Copyright (c) 2024
  * 
  */
 
-// Include Directives & Namespace STD used in this version
+// Include Directives & Namespace STD used in this version (fixed & SetPrecision will later be implemented)
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -127,6 +127,16 @@ int main()
         cout << "Total exam points: " << totalExams << endl;
         cout << "Total project points: " << totalProjects << endl;
 
+        // Turn percentage weight of categories into decimals, which will be used for grade calculation.
+        double assignmentDecimal, quizDecimal, examDecimal, projectDecimal;
+        assignmentDecimal = assignmentWeight / 100;
+        quizDecimal = quizWeight / 100;
+        examDecimal = examWeight / 100;
+        projectDecimal = projectWeight / 100;
+
+        // Calculations to find weighted grade.
+        
+
     } else if (weighted == "no") {
 
         cout << "How much points is the class made up of?: ";
@@ -140,15 +150,31 @@ int main()
         cout << "Minimum Points required to get a D?: ";
         cin >> GradeD;
         
-        int assignmentPoints, quizPoints, examPoints, projectPoints;
-        cout << "Enter the amount of points your assignments make up in the course: ";
-        cin >> assignmentPoints;
-        cout << "Enter the amount of points your quizzes make up in the course: ";
-        cin >> quizPoints;
-        cout << "Enter the amount of points your exams make up in the course: ";
-        cin >> examPoints;
-        cout << "Enter the amount of points your projects make up in the course: ";
-        cin >> projectPoints;
+
+        // Since in unweighted grading, all coursework holds the same weight, assignment types will most likely not matter in this portion and will probably be erased.
+        char moreInput;
+        int score, totalScore = 0;
+
+        // Warning for score inputs
+        cout << "When entering scores, make sure your inputs do not exceed the total points the class is made up of. Doing so will lead to the reset of score inputs.\n";
+
+        do {
+            cout << "Enter a score: ";
+            cin >> score;
+            totalScore += score;
+
+        // Should look into a feature that allows changes in scores to avoid having user input all scores again if a small number error was made
+        // As for now, this program essentially makes sure score inputs does not exceed the total score cap.
+            if (totalScore > TotalPoints) {
+                cout << "Your score inputs should not exceed the total amount of points. Please re-enter your scores." << endl;
+                totalScore = 0;
+            }
+
+            cout << "Total Score: " << totalScore << endl;
+            cout << "Do you have more scores to enter? (y/n): ";
+            cin >> moreInput;
+        } while (moreInput == 'y');
+
         // Non-weighted system: Simple point-based calculation
         // Make sure to add code that prevents users from inputting a total score that exceeds the amount user previously mentioned 
         // (ex: if assignments is worth 200 points, user inputs should not exceed 200)
@@ -159,4 +185,6 @@ int main()
     }
 // Later in the code: user output of whether they are doing good, or need to do better in the course
 // Also add code later to see if there are any other courses to test
+// Use functions so we can simplify the structure of the program and be able to use certain parts again
+// Can also potentially add a feature in which we allow the user to input the name of the coursework before asking for score so they do not get confused.
 }
