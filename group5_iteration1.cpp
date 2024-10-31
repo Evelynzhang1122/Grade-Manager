@@ -12,6 +12,7 @@
 // Include Directives & Namespace STD used in this version (fixed & SetPrecision will later be implemented)
 #include <iostream>
 #include <iomanip>
+#include <limits> // For std::numeric_limits
 using namespace std;
 
 int main()
@@ -26,6 +27,14 @@ int main()
 
     cout << "Enter your school ID: ";
     cin >> StudentID;
+
+    if (cin.fail()) {  // will fail if the input is not an int. It will then restart by calling the main funciton
+        cout << "Invalid input. Please Restart" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // discards the invalid input
+        //Source: https://stackoverflow.com/questions/25020129/cin-ignorenumeric-limitsstreamsizemax-n
+        main();
+    }
 
     cout << "Enter a class: ";
     cin >> Class;
@@ -78,15 +87,17 @@ int main()
         
         // Allow the user to enter multiple scores until the user chooses to stop
             char moreInput;
-            int totalAssignments = 0, totalQuizzes = 0, totalExams = 0, totalProjects = 0;
-            int assignmentScore, quizScore, examScore, projectScore;
-            
+            double totalAssignments = 0, totalQuizzes = 0, totalExams = 0, totalProjects = 0;
+            int amountAssignments = 0, amountQuizzes = 0, amountExams = 0, amountProjects = 0;
+            double assignmentScore, quizScore, examScore, projectScore;
+            double tAssignmentWeight, tQuizWeight, tExamWeight, tProjectWeight;
             
         // input loop of homework
         do {
             cout << "Enter your assignment score: ";
             cin >> assignmentScore;
             totalAssignments += assignmentScore;  // 累加分数
+            amountAssignments += 1;
 
             cout << "Do you have more assignment scores to enter? (y/n): ";
             cin >> moreInput;
@@ -96,6 +107,7 @@ int main()
             cout << "Enter your quiz score: ";
             cin >> quizScore;
             totalQuizzes += quizScore;
+            amountQuizzes += 1;
 
             cout << "Do you have more assignment scores to enter? (y/n): ";
             cin >> moreInput;
@@ -106,6 +118,7 @@ int main()
             cout << "Enter your exam score: ";
             cin >> examScore;
             totalExams += examScore;
+            amountExams += 1;
 
             cout << "Do you have more exam scores to enter? (y/n): ";
             cin >> moreInput;
@@ -116,6 +129,7 @@ int main()
             cout << "Enter your project score: ";
             cin >> projectScore;
             totalProjects += projectScore;
+            amountProjects += 1;
 
             cout << "Do you have more project scores to enter? (y/n): ";
             cin >> moreInput;
@@ -134,8 +148,9 @@ int main()
         examDecimal = examWeight / 100;
         projectDecimal = projectWeight / 100;
 
-        // Calculations to find weighted grade.
-        
+        // Calculations to find weighted grade (Total points divided by amount of inputs, multiplied by decimal of weight per category)
+        tAssignmentWeight = (totalAssignments / amountAssignments) * assignmentDecimal;
+
 
     } else if (weighted == "no") {
 
