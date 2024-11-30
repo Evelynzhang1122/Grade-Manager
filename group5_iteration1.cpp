@@ -1,9 +1,9 @@
 /**
- * @file group5_iteration1.cpp
+ * @file group5_iteration2.cpp
  * @author Group 5 (Lu Zhang, Darren Ma, Sarah Hammash, Zhan Hao He)
  * @brief Grade Manager
- * @version 0.2
- * @date 10/30/24
+ * @version Final Version
+ * @date 11/27/24
  * 
  * @copyright Copyright (c) 2024
  * 
@@ -50,8 +50,6 @@ int main()
 
     if (weighted == "yes") {
 
-        cout << "How much points is the class made up of?: ";
-        cin >> TotalPoints;
         cout << "Minimum Percentage required to get an A?: ";
         cin >> GradeA;
         cout << "Minimum Percentage required to get a B?: ";
@@ -86,10 +84,13 @@ int main()
         } 
         
         // Allow the user to enter multiple scores until the user chooses to stop
+        // Based off the assumption that the scores are out of 100 points each.
             char moreInput;
             double totalAssignments = 0, totalQuizzes = 0, totalExams = 0, totalProjects = 0;
             int amountAssignments = 0, amountQuizzes = 0, amountExams = 0, amountProjects = 0;
-            double assignmentScore, quizScore, examScore, projectScore;
+            double assignmentScore, quizScore, examScore, projectScore, totalScoreInput;
+            double assignmentDecimal, quizDecimal, examDecimal, projectDecimal;
+            double assignmentLoss, quizLoss, examLoss, projectLoss;
             double tAssignmentWeight, tQuizWeight, tExamWeight, tProjectWeight;
             
         // input loop of homework
@@ -103,13 +104,14 @@ int main()
             cin >> moreInput;
         } while (moreInput == 'y');
 
+        // input loop of quiz
         do {
             cout << "Enter your quiz score: ";
             cin >> quizScore;
             totalQuizzes += quizScore;
             amountQuizzes += 1;
 
-            cout << "Do you have more assignment scores to enter? (y/n): ";
+            cout << "Do you have more quiz scores to enter? (y/n): ";
             cin >> moreInput;
         } while (moreInput == 'y');
 
@@ -135,22 +137,34 @@ int main()
             cin >> moreInput;
         } while (moreInput == 'y');
 
+        // Total Overall Score added together
+        totalScoreInput = totalAssignments + totalExams + totalProjects + totalQuizzes;
+
         // input total points
-        cout << "Total assignment points: " << totalAssignments << endl;
+        cout << "Total assignment points: " << totalAssignments << ", Amount of assignments inputted: " << amountAssignments << endl;
         cout << "Total quiz points: " << totalQuizzes << endl;
         cout << "Total exam points: " << totalExams << endl;
         cout << "Total project points: " << totalProjects << endl;
 
         // Turn percentage weight of categories into decimals, which will be used for grade calculation.
-        double assignmentDecimal, quizDecimal, examDecimal, projectDecimal;
-        assignmentDecimal = assignmentWeight / 100;
-        quizDecimal = quizWeight / 100;
-        examDecimal = examWeight / 100;
-        projectDecimal = projectWeight / 100;
+        assignmentDecimal = assignmentWeight / 100.0;
+        quizDecimal = quizWeight / 100.0;
+        examDecimal = examWeight / 100.0;
+        projectDecimal = projectWeight / 100.0;
 
         // Calculations to find weighted grade (Total points divided by amount of inputs, multiplied by decimal of weight per category)
         tAssignmentWeight = (totalAssignments / amountAssignments) * assignmentDecimal;
+        tQuizWeight = (totalQuizzes / amountQuizzes) * quizDecimal;
+        tExamWeight = (totalExams / amountExams) * examDecimal;
+        tProjectWeight = (totalProjects / amountProjects) * projectDecimal;
+        double weightedGrade = tAssignmentWeight + tQuizWeight + tExamWeight + tProjectWeight;
+        cout << "Your Weighted Grade is: " << fixed << setprecision(2) << weightedGrade << endl;
 
+        if (weightedGrade >= GradeA) {
+            cout << "You have an A!" << endl;
+        } else if (weightedGrade < GradeA || weightedGrade >= GradeB) {
+            cout << "You have a B!" << endl;
+        }
 
     } else if (weighted == "no") {
 
