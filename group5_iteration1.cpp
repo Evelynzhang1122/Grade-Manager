@@ -88,9 +88,8 @@ int main()
             char moreInput;
             double totalAssignments = 0, totalQuizzes = 0, totalExams = 0, totalProjects = 0;
             int amountAssignments = 0, amountQuizzes = 0, amountExams = 0, amountProjects = 0;
-            double assignmentScore, quizScore, examScore, projectScore, totalScoreInput;
+            double assignmentScore, quizScore, examScore, projectScore;
             double assignmentDecimal, quizDecimal, examDecimal, projectDecimal;
-            double assignmentLoss, quizLoss, examLoss, projectLoss;
             double tAssignmentWeight, tQuizWeight, tExamWeight, tProjectWeight;
             
         // input loop of homework
@@ -136,9 +135,6 @@ int main()
             cout << "Do you have more project scores to enter? (y/n): ";
             cin >> moreInput;
         } while (moreInput == 'y');
-
-        // Total Overall Score added together
-        totalScoreInput = totalAssignments + totalExams + totalProjects + totalQuizzes;
 
         // input total points
         cout << "Total assignment points: " << totalAssignments << ", Amount of assignments inputted: " << amountAssignments << endl;
