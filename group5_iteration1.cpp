@@ -138,9 +138,9 @@ int main()
 
         // input total points
         cout << "Total assignment points: " << totalAssignments << ", Amount of assignments inputted: " << amountAssignments << endl;
-        cout << "Total quiz points: " << totalQuizzes << endl;
-        cout << "Total exam points: " << totalExams << endl;
-        cout << "Total project points: " << totalProjects << endl;
+        cout << "Total quiz points: " << totalQuizzes << ", Amount of quizzes inputted: " << amountQuizzes << endl;
+        cout << "Total exam points: " << totalExams << ", Amount of exams inputted: " << amountExams << endl;
+        cout << "Total project points: " << totalProjects << ", Amount of projects inputted: " << amountProjects << endl;
 
         // Turn percentage weight of categories into decimals, which will be used for grade calculation.
         assignmentDecimal = assignmentWeight / 100.0;
@@ -157,9 +157,15 @@ int main()
         cout << "Your Weighted Grade is: " << fixed << setprecision(2) << weightedGrade << endl;
 
         if (weightedGrade >= GradeA) {
-            cout << "You have an A!" << endl;
-        } else if (weightedGrade < GradeA || weightedGrade >= GradeB) {
-            cout << "You have a B!" << endl;
+            cout << "You have an A in this course." << endl;
+        } else if (weightedGrade < GradeA && weightedGrade >= GradeB) {
+            cout << "You have a B in this course." << endl;
+        } else if (weightedGrade < GradeB && weightedGrade >= GradeC) {
+            cout << "You have a C in this course." << endl;
+        } else if (weightedGrade < GradeC && weightedGrade >= GradeD) {
+            cout << "You have a D in this course." << endl;
+        } else if (weightedGrade < GradeD) {
+            cout << "You have a F in this course." << endl;
         }
 
     } else if (weighted == "no") {
