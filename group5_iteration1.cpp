@@ -96,7 +96,7 @@ int main()
             do {
                 cout << "Enter your assignment score: ";
                 cin >> assignmentScore;
-                totalAssignments += assignmentScore;  // 累加分数
+                totalAssignments += assignmentScore;  
                 amountAssignments += 1;
 
                 cout << "Do you have more assignment scores to enter? (y/n): ";
