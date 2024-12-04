@@ -225,7 +225,8 @@ int main()
 
         // This occurs when there is not a yes or no answer for weighted/unweighted question. Will need to make a loop to ask this question.
         } else {
-            cout << "Invalid Input. Restart the program.";
+            cout << "Invalid Input. Restarting the program.\n";
+            main(); // restarts the program
         }
 
     cout << "Do you want to continue using this program? (y/n): " << endl;
